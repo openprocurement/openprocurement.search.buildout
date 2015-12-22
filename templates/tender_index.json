@@ -1,0 +1,855 @@
+{
+    "mappings": {
+        "tender": {
+            "include_in_all": false,
+            "properties": {
+                "auctionPeriod": {
+                    "include_in_all": false,
+                    "properties": {
+                        "endDate": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "startDate": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        }
+                    }
+                },
+                "auctionUrl": {
+                    "type": "string"
+                },
+                "awardCriteria": {
+                    "type": "string",
+                    "analyzer": "whitespace"
+                },
+                "awardPeriod": {
+                    "include_in_all": false,
+                    "properties": {
+                        "endDate": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "startDate": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        }
+                    }
+                },
+                "awards": {
+                    "properties": {
+                        "bid_id": {
+                            "type": "string"
+                        },
+                        "complaintPeriod": {
+                            "properties": {
+                                "endDate": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                },
+                                "startDate": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                }
+                            }
+                        },
+                        "contracts": {
+                            "include_in_all": true,
+                            "properties": {
+                                "awardID": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "documents": {
+                                    "properties": {
+                                        "dateModified": {
+                                            "type": "date",
+                                            "format": "dateOptionalTime"
+                                        },
+                                        "datePublished": {
+                                            "type": "date",
+                                            "format": "dateOptionalTime"
+                                        },
+                                        "documentType": {
+                                            "type": "string"
+                                        },
+                                        "format": {
+                                            "type": "string"
+                                        },
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "url": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "date": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "documents": {
+                            "properties": {
+                                "dateModified": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                },
+                                "datePublished": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                },
+                                "format": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "include_in_all": true,
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        },
+                        "suppliers": {
+                            "include_in_all": true,
+                            "properties": {
+                                "address": {
+                                    "properties": {
+                                        "countryName": {
+                                            "type": "string"
+                                        },
+                                        "locality": {
+                                            "type": "string"
+                                        },
+                                        "postalCode": {
+                                            "type": "string",
+                                            "analyzer": "whitespace"
+                                        },
+                                        "region": {
+                                            "type": "string"
+                                        },
+                                        "streetAddress": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "contactPoint": {
+                                    "properties": {
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "faxNumber": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "telephone": {
+                                            "type": "string"
+                                        },
+                                        "url": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "identifier": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "legalName": {
+                                            "type": "string"
+                                        },
+                                        "scheme": {
+                                            "type": "string"
+                                        },
+                                        "uri": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "value": {
+                            "properties": {
+                                "amount": {
+                                    "type": "double"
+                                },
+                                "currency": {
+                                    "type": "string"
+                                },
+                                "valueAddedTaxIncluded": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "bids": {
+                    "properties": {
+                        "date": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "documents": {
+                            "include_in_all": true,
+                            "properties": {
+                                "dateModified": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                },
+                                "datePublished": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                },
+                                "format": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "participationUrl": {
+                            "type": "string"
+                        },
+                        "tenderers": {
+                            "include_in_all": true,
+                            "properties": {
+                                "address": {
+                                    "properties": {
+                                        "countryName": {
+                                            "type": "string"
+                                        },
+                                        "locality": {
+                                            "type": "string"
+                                        },
+                                        "postalCode": {
+                                            "type": "string",
+                                            "analyzer": "whitespace"
+                                        },
+                                        "region": {
+                                            "type": "string"
+                                        },
+                                        "streetAddress": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "contactPoint": {
+                                    "properties": {
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "faxNumber": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "telephone": {
+                                            "type": "string"
+                                        },
+                                        "url": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "identifier": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "legalName": {
+                                            "type": "string"
+                                        },
+                                        "scheme": {
+                                            "type": "string"
+                                        },
+                                        "uri": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "value": {
+                            "properties": {
+                                "amount": {
+                                    "type": "double"
+                                },
+                                "currency": {
+                                    "type": "string"
+                                },
+                                "valueAddedTaxIncluded": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "cancellations": {
+                    "properties": {
+                        "date": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "documents": {
+                            "properties": {
+                                "dateModified": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                },
+                                "datePublished": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                },
+                                "format": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "include_in_all": true,
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "reason": {
+                            "include_in_all": true,
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "complaints": {
+                    "properties": {
+                        "author": {
+                            "include_in_all": true,
+                            "properties": {
+                                "address": {
+                                    "properties": {
+                                        "countryName": {
+                                            "type": "string"
+                                        },
+                                        "locality": {
+                                            "type": "string"
+                                        },
+                                        "postalCode": {
+                                            "type": "string",
+                                            "analyzer": "whitespace"
+                                        },
+                                        "region": {
+                                            "type": "string"
+                                        },
+                                        "streetAddress": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "contactPoint": {
+                                    "properties": {
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "faxNumber": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "telephone": {
+                                            "type": "string"
+                                        },
+                                        "url": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "identifier": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "scheme": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "date": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "description": {
+                            "include_in_all": true,
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "include_in_all": true,
+                            "type": "string"
+                        }
+                    }
+                },
+                "dateModified": {
+                    "type": "date",
+                    "format": "dateOptionalTime"
+                },
+                "description": {
+                    "include_in_all": true,
+                    "type": "string"
+                },
+                "description_ru": {
+                    "include_in_all": true,
+                    "type": "string"
+                },
+                "description_en": {
+                    "include_in_all": true,
+                    "type": "string"
+                },
+                "documents": {
+                    "properties": {
+                        "dateModified": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "datePublished": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "format": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "include_in_all": true,
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "enquiryPeriod": {
+                    "include_in_all": false,
+                    "properties": {
+                        "endDate": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "startDate": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "items": {
+                    "properties": {
+                        "additionalClassifications": {
+                            "include_in_all": true,
+                            "properties": {
+                                "description": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string",
+                                    "analyzer": "whitespace"
+                                },
+                                "scheme": {
+                                    "type": "string",
+                                    "analyzer": "whitespace"
+                                }
+                            }
+                        },
+                        "classification": {
+                            "include_in_all": true,
+                            "properties": {
+                                "description": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string",
+                                    "analyzer": "whitespace"
+                                },
+                                "scheme": {
+                                    "type": "string",
+                                    "analyzer": "whitespace"
+                                }
+                            }
+                        },
+                        "deliveryAddress": {
+                            "include_in_all": true,
+                            "properties": {
+                                "countryName": {
+                                    "type": "string"
+                                },
+                                "locality": {
+                                    "type": "string"
+                                },
+                                "postalCode": {
+                                    "type": "string",
+                                    "analyzer": "whitespace"
+                                },
+                                "region": {
+                                    "type": "string"
+                                },
+                                "streetAddress": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "deliveryDate": {
+                            "include_in_all": false,
+                            "properties": {
+                                "endDate": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                },
+                                "startDate": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                }
+                            }
+                        },
+                        "deliveryLocation": {
+                            "properties": {
+                                "elevation": {
+                                    "include_in_all": true,
+                                    "type": "string"
+                                },
+                                "latitude": {
+                                    "type": "string"
+                                },
+                                "longitude": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "description": {
+                            "include_in_all": true,
+                            "type": "string"
+                        },
+                        "quantity": {
+                            "type": "long"
+                        },
+                        "unit": {
+                            "properties": {
+                                "code": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "minimalStep": {
+                    "properties": {
+                        "amount": {
+                            "type": "double"
+                        },
+                        "currency": {
+                            "type": "string"
+                        },
+                        "valueAddedTaxIncluded": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "mode": {
+                    "type": "string",
+                    "analyzer": "whitespace"
+                },
+                "numberOfBids": {
+                    "type": "long"
+                },
+                "procurementMethod": {
+                    "type": "string",
+                    "analyzer": "whitespace"
+                },
+                "procuringEntity": {
+                    "include_in_all": true,
+                    "properties": {
+                        "address": {
+                            "properties": {
+                                "countryName": {
+                                    "type": "string"
+                                },
+                                "locality": {
+                                    "type": "string"
+                                },
+                                "postalCode": {
+                                    "type": "string",
+                                    "analyzer": "whitespace"
+                                },
+                                "region": {
+                                    "type": "string"
+                                },
+                                "streetAddress": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "contactPoint": {
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "faxNumber": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "telephone": {
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "identifier": {
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "analyzer": "whitespace"
+                                },
+                                "legalName": {
+                                    "type": "string"
+                                },
+                                "scheme": {
+                                    "type": "string",
+                                    "analyzer": "whitespace"
+                                },
+                                "uri": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "questions": {
+                    "properties": {
+                        "answer": {
+                            "include_in_all": true,
+                            "type": "string"
+                        },
+                        "author": {
+                            "include_in_all": true,
+                            "properties": {
+                                "address": {
+                                    "properties": {
+                                        "countryName": {
+                                            "type": "string"
+                                        },
+                                        "locality": {
+                                            "type": "string"
+                                        },
+                                        "postalCode": {
+                                            "type": "string",
+                                            "analyzer": "whitespace"
+                                        },
+                                        "region": {
+                                            "type": "string"
+                                        },
+                                        "streetAddress": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "contactPoint": {
+                                    "properties": {
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "faxNumber": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "telephone": {
+                                            "type": "string"
+                                        },
+                                        "url": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "identifier": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "legalName": {
+                                            "type": "string"
+                                        },
+                                        "scheme": {
+                                            "type": "string"
+                                        },
+                                        "uri": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "date": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "analyzer": "whitespace"
+                },
+                "submissionMethod": {
+                    "type": "string",
+                    "analyzer": "whitespace"
+                },
+                "submissionMethodDetails": {
+                    "include_in_all": true,
+                    "type": "string"
+                },
+                "tenderID": {
+                    "include_in_all": true,
+                    "type": "string",
+                    "analyzer": "whitespace"
+                },
+                "tenderPeriod": {
+                    "include_in_all": false,
+                    "properties": {
+                        "endDate": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        },
+                        "startDate": {
+                            "type": "date",
+                            "format": "dateOptionalTime"
+                        }
+                    }
+                },
+                "title": {
+                    "include_in_all": true,
+                    "type": "string"
+                },
+                "title_ru": {
+                    "include_in_all": true,
+                    "type": "string"
+                },
+                "title_en": {
+                    "include_in_all": true,
+                    "type": "string"
+                },
+                "value": {
+                    "properties": {
+                        "amount": {
+                            "type": "double"
+                        },
+                        "currency": {
+                            "type": "string"
+                        },
+                        "valueAddedTaxIncluded": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "version": {
+                    "type": "long"
+                }
+            }
+        }
+    },
+    "settings": {
+        "index": {
+            "analysis": {
+                "analyzer": {
+                    "whitespace": {
+                        "type": "whitespace",
+                        "filter": "lowercase"
+                    }
+                }
+            }
+        }
+    }
+}
+
