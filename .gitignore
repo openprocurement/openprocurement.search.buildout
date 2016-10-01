@@ -12,6 +12,7 @@ etc/
 build/
 develop-eggs/
 dist/
+json/
 downloads/
 eggs/
 lib/
