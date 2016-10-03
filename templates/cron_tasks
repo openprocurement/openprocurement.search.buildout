@@ -1,0 +1,65 @@
+#!/bin/sh
+
+BASEDIR=/srv/search.tenders
+CONFDIR=/etc/search.tenders
+LOGSDIR=/var/log/search.tenders
+
+cd $BASEDIR || exit 1
+
+clean_indexes()
+{
+  for INI in $CONFDIR/search*.ini
+  do
+    $BASEDIR/bin/clean_indexes $INI >>$LOGSDIR/clean_indexes.log 2>&1
+  done
+}
+
+restart_indexer()
+{
+  echo -e "\n["`date`"] Restart search-tenders" >>$LOGSDIR/status.log
+  $BASEDIR/bin/circusctl stop >>$LOGSDIR/status.log 2>&1
+  sleep 5
+  $BASEDIR/bin/circusctl start >>$LOGSDIR/status.log 2>&1
+}
+
+circus_status()
+{
+  echo -e "\n["`date`"] Status search-tenders" >>$LOGSDIR/status.log
+  $BASEDIR/bin/circusctl stats >>$LOGSDIR/status.log 2>&1
+}
+
+ocds_ftpsync()
+{
+  $BASEDIR/bin/ocds_ftpsync $CONFDIR/ftpsync.ini >>$LOGSDIR/ftpsync.log 2>&1
+}
+
+update_orgs()
+{
+  for INI in $CONFDIR/search*.ini
+  do
+    $BASEDIR/bin/update_orgs $INI >>$LOGSDIR/update_orgs.log 2>&1
+  done
+}
+
+
+case $1 in
+clean)
+	clean_indexes
+	;;
+restart)
+	restart_indexer
+	;;
+status)
+	circus_status
+	;;
+ftpsync)
+	ocds_ftpsync
+	;;
+up_orgs)
+	update_orgs
+	;;
+*)
+	echo "Usage: $0 (clean|restart|status|ftpsync|up_orgs)"
+	exit 1
+esac
+
