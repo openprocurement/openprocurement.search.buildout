@@ -1,8 +1,9 @@
 #!/bin/sh
 
-BASEDIR=/srv/search.tenders
-CONFDIR=/etc/search.tenders
-LOGSDIR=/var/log/search.tenders
+BASEDIR=${parts.buildout.directory}
+CONFDIR=${parts.buildout.directory}/etc
+LOGSDIR=${parts.buildout.directory}/var/log
+CONTROL=$BASEDIR/bin/circusctl
 
 cd $BASEDIR || exit 1
 
@@ -14,23 +15,30 @@ clean_indexes()
   done
 }
 
+do_restart_indexer()
+{
+  echo "["`date`"] Restart search-tenders"
+  $CONTROL stop
+  while [ `$CONTROL status | grep -c -v stopped` -ne 0 ] ; do
+    sleep 1
+  done
+  sleep 2
+  $CONTROL start
+  sleep 3
+  $CONTROL status
+  $CONTROL dstats
+  $CONTROL stats
+  echo
+}
+
 restart_indexer()
 {
-  echo -e "\n["`date`"] Restart search-tenders" >>$LOGSDIR/status.log
-  $BASEDIR/bin/circusctl stop >>$LOGSDIR/status.log 2>&1
-  sleep 5
-  $BASEDIR/bin/circusctl start >>$LOGSDIR/status.log 2>&1
+  do_restart_indexer >>$LOGSDIR/cron_tasks.log 2>&1
 }
 
-circus_status()
+ocds_ftp_sync()
 {
-  echo -e "\n["`date`"] Status search-tenders" >>$LOGSDIR/status.log
-  $BASEDIR/bin/circusctl stats >>$LOGSDIR/status.log 2>&1
-}
-
-ocds_ftpsync()
-{
-  $BASEDIR/bin/ocds_ftpsync $CONFDIR/ftpsync.ini >>$LOGSDIR/ftpsync.log 2>&1
+  $BASEDIR/bin/ocds_ftp_sync $CONFDIR/ftpsync.ini >>$LOGSDIR/ftpsync.log 2>&1
 }
 
 update_orgs()
@@ -41,25 +49,22 @@ update_orgs()
   done
 }
 
+test_search()
+{
+  for INI in $CONFDIR/search*.ini
+  do
+    $BASEDIR/bin/test_search $INI >>$LOGSDIR/test_search.log 2>&1
+  done
+}
+
 
 case $1 in
-clean)
-	clean_indexes
-	;;
-restart)
-	restart_indexer
-	;;
-status)
-	circus_status
-	;;
-ftpsync)
-	ocds_ftpsync
-	;;
-up_orgs)
-	update_orgs
-	;;
-*)
-	echo "Usage: $0 (clean|restart|status|ftpsync|up_orgs)"
+clean)      clean_indexes   ;;
+reload)     restart_indexer ;;
+ftpsync)    ocds_ftp_sync   ;;
+update)     update_orgs     ;;
+test)       test_search     ;;
+*)  echo "Usage: $0 {clean|reload|ftpsync|update|test}"
 	exit 1
 esac
 
