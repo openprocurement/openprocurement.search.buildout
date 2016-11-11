@@ -1,0 +1,8 @@
+Package: search-tenders
+Version: 0.5-3k
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: python (>= 2.7), python-gevent (>= 1.0), libzmq3 (>= 4.0)
+Maintainer: Volodymyr Flonts <flyonts@gmail.com>
+Description: OpenProcurement Tenders Search API

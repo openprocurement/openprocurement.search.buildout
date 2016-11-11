@@ -1,0 +1,88 @@
+search-tenders (0.5-3) stable; urgency=low
+
+ * Force "and" operator for query match _all
+ * Ingore errors while indexing (disabled by default)
+ * Update orgs index after each source processed
+ * Fix bug in source.reset which keep params offset
+ * Add tender_reindex and plan_reindex options
+ * Add indexer start_wait option (in seconds)
+ * Add heartbeat index statistics
+ * Add custom_index_names command line argument
+ * Update tender index settings, add analyzer
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Wed Oct 12 15:02:34 EEST 2016
+
+search-tenders (0.5-1) stable; urgency=low
+
+ * Don't index competitiveDialogueUA.stage2 with status == draft.stage2
+ * Preload feature in tender and plan index source
+ * Use limit=1000 for query changes feed
+ * Create system user `searchtenders` and run workers using it
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Sat Oct  1 21:45:05 EEST 2016
+
+search-tenders (0.4-3) stable; urgency=low
+
+ * Fix index creation bug for OCDS index
+ * Update skip_until feature for full reindex procedure
+ * Add ocds_skip_until feature for OCDS
+ * Add update_orgs_days feature for update_orgs
+ * Improve stability of update_orgs
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Wed Sep 21 19:05:03 EEST 2016
+
+search-tenders (0.4-2) stable; urgency=low
+
+ * Add orgs suggest live indexing
+ * Add standalone update_orgs indexer
+ * Add signal handler and verbose exception logging
+ * Add cron_tasks script, change cron.daily to cron.d
+ * Add range search by value.amount
+ * Fix bug with CPV search in plans
+ * Merge changelog 0.4-1 to 0.4-2
+ * Update socket setdefaulttimeout
+ * Index missing orgs in update_orgs
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Mon Sep 12 20:11:21 EEST 2016
+
+search-tenders (0.3-5) stable; urgency=low
+
+ * Merge changelog 0.3-2 to 0.3-5
+ * Change: Full reindex in weekend in any time
+ * Fix: don't leave loop on full reindexing
+ * Fix: leave indexing loop if nothing returned
+ * Improve indexer concurency and verbose logging
+ * New cron.hourly maintenance task instead of cron.daily 
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Mon Jul 25 00:07:11 EEST 2016
+
+search-tenders (0.3-1) stable; urgency=low
+
+ * Increase clean_indexes period to 10 days
+ * Add rename_{indexname} feature
+ * Add skip_until feature for tenders and plans
+ * Add possibility to disable one of indexes
+ * Update heartbeat during long indexing cycle
+ * Add retry after REST client 50x errors 
+ * Disable ocds_speed option, sleep(1) each 1k
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Fri Jul 22 15:30:53 EEST 2016
+
+search-tenders (0.2-1) stable; urgency=low
+
+ * Fix bug in search by procurementMethodType == aboveThresholdUA
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Tue Jul 12 04:18:44 EEST 2016
+
+search-tenders (0.1-2) stable; urgency=low
+
+ * Add DEBIAN/conffiles
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Thu Jun 16 12:48:47 EEST 2016
+
+search-tenders (0.1-1) stable; urgency=low
+
+ * Initial release
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Sun May  8 03:39:30 EEST 2016
+

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+[ -x /etc/init.d/search-tenders ] || exit 0
+
+/etc/init.d/search-tenders stop
+sleep 3
+
+[ -x /usr/sbin/update-rc.d ] || exit 0
+
+/usr/sbin/update-rc.d -f search-tenders remove
+
+[ -d /srv/search.tenders ] || exit 0
+
+find /srv/search.tenders -name \*.pyc -delete
+#rm -f /srv/search.tenders/var/*

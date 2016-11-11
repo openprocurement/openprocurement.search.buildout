@@ -1,0 +1,4 @@
+/etc/search.tenders/circus.ini
+/etc/search.tenders/ftpsync.ini
+/etc/search.tenders/search.ini
+/etc/cron.d/search-tenders
