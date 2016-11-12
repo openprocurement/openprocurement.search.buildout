@@ -1,0 +1,6 @@
+# m     h       dom mon dow     user    command
+#11     14      *   *   *       root    /srv/search.tenders/bin/cron_tasks ftpsync
+21      21      *   *   3       root    /srv/search.tenders/bin/cron_tasks update
+31      22      *   *   2,4     root    /srv/search.tenders/bin/cron_tasks clean
+41      22      *   *   1-5     root    /srv/search.tenders/bin/cron_tasks reload
+51      *       *   *   *       root    /srv/search.tenders/bin/cron_tasks test

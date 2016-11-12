@@ -1,0 +1,120 @@
+#!/bin/sh
+#
+# search-tenders     Search API for Prozorro portal
+#
+# chkconfig: - 50 50
+# description: Search API for Prozorro portal
+#
+### BEGIN INIT INFO
+# Provides:          search-tenders
+# Required-Start:    $network $remote_fs $syslog $all
+# Required-Stop:     $network $remote_fs $syslog  
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable search api for prozorro.gov.ua
+### END INIT INFO
+
+#set -e
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+. /lib/init/vars.sh
+. /lib/lsb/init-functions
+
+PIDFILE="/run/search.tenders.circus.pid"
+DAEMON="/srv/search.tenders/bin/circusd"
+CONTROL="/srv/search.tenders/bin/circusctl"
+SOCKET="/srv/search.tenders/var/circus_endpoint"
+WORKDIR="/srv/search.tenders/var"
+
+daemon_control() {
+  if [ ! -S $SOCKET ] ; then
+    >&2 echo "Start daemon first"
+    return
+  fi
+  case "$2" in
+  search*) $CONTROL $1 search_server ;;
+  index*) $CONTROL $1 index_worker ;;
+  *) echo "Unknown worker $2" ;;
+  esac
+}
+ 
+daemon_start() {
+  if [ -n "$1" ] ; then
+    daemon_control start $1
+    return
+  fi
+  if [ -S $SOCKET ] ; then
+    >&2 echo "Warning: $SOCKET already exists"
+    if [ `ps uax | grep -c circusd` -ne 0 ] ; then
+      return 1
+    fi
+  fi 
+  cd $WORKDIR
+  $DAEMON --daemon
+  while [ ! -s $PIDFILE -o ! -S $SOCKET ] ; do
+    sleep 0.1
+  done
+  echo "Starting $DAEMON pid" `cat $PIDFILE`
+}
+
+daemon_stop() {
+  if [ -n "$1" ] ; then
+    daemon_control stop $1
+    return
+  fi
+   if [ ! -s $PIDFILE -a ! -S $SOCKET ] ; then
+    echo "Service not run, nothing to stop"
+    return
+  fi
+  echo "Stopping $DAEMON pid "`cat $PIDFILE`
+  $CONTROL quit
+}
+
+daemon_restart() {
+  daemon_stop
+  while [ -S $SOCKET ] ; do 
+    sleep 1 
+  done
+  sleep 2
+  daemon_start
+}
+
+daemon_reload() {
+  $CONTROL restart
+  sleep 3
+  if [ ! -s $PIDFILE -a -S $SOCKET ] ; then
+    $CONTROL dstats | awk '$2~/python/{print $1}' >$PIDFILE
+  fi
+}
+
+daemon_status() {
+  if [ -S $SOCKET ] ; then
+    # echo "Pidfile $PIDFILE pid" `cat $PIDFILE`
+    $CONTROL status
+  else
+    if [ -s $PIDFILE ] ; then
+      echo dead, but pidfile exists
+    else
+      echo dead
+    fi
+  fi
+}
+
+
+case "$1" in
+start) daemon_start $2 
+  ;;
+stop)  daemon_stop $2
+  ;;
+stat*) daemon_status
+  ;;
+restart) daemon_restart
+  ;;
+reload|force-reload) daemon_reload 
+  ;;
+*) echo "Usage: $0 {start|stop|status|reload|force-reload|restart}" 1>&2 
+  ;;
+esac
+
