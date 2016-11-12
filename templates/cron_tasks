@@ -24,16 +24,11 @@ do_restart_indexer()
   done
   sleep 2
   $CONTROL start
-  sleep 3
-  $CONTROL status
-  $CONTROL dstats
-  $CONTROL stats
-  echo
 }
 
 restart_indexer()
 {
-  do_restart_indexer >>$LOGSDIR/cron_tasks.log 2>&1
+  do_restart_indexer >>$LOGSDIR/restart.log 2>&1
 }
 
 ocds_ftp_sync()
