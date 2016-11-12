@@ -1,8 +1,8 @@
 #!/bin/sh
 
-BASEDIR=${parts.buildout.directory}
-CONFDIR=${parts.buildout.directory}/etc
-LOGSDIR=${parts.buildout.directory}/var/log
+BASEDIR=${buildout:directory}
+CONFDIR=${buildout:directory}/etc
+LOGSDIR=${buildout:directory}/var/log
 CONTROL=$BASEDIR/bin/circusctl
 
 cd $BASEDIR || exit 1
