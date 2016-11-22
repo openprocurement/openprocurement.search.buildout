@@ -15,7 +15,7 @@ clean_indexes()
   done
 }
 
-do_restart_indexer()
+do_restart_workers()
 {
   echo "["`date`"] Restart search-tenders"
   $CONTROL stop
@@ -26,9 +26,31 @@ do_restart_indexer()
   $CONTROL start
 }
 
-restart_indexer()
+restart_workers()
 {
   do_restart_indexer >>$LOGSDIR/restart.log 2>&1
+}
+
+do_reload_workers()
+{
+  echo "["`date`"] Reload search-tenders"
+  $CONTROL restart
+  sleep 5
+  if [ ! -s $PIDFILE -a -S $SOCKET ] ; then
+    $CONTROL dstats | awk '$2~/python/{print $1}' >$PIDFILE
+  fi
+}
+
+reload_workers()
+{
+  do_reload_workers >>$LOGSDIR/restart.log 2>&1
+}
+
+rotate_logs()
+{
+  if [ -x /usr/sbin/logrotate ] ; then
+    /usr/sbin/logrotate $CONFDIR/logrotate.conf >/dev/null
+  fi
 }
 
 ocds_ftp_sync()
@@ -48,6 +70,7 @@ test_search()
 {
   for INI in $CONFDIR/search*.ini
   do
+    $BASEDIR/bin/test_index $INI >>$LOGSDIR/test_search.log 2>&1
     $BASEDIR/bin/test_search $INI >>$LOGSDIR/test_search.log 2>&1
   done
 }
@@ -55,11 +78,13 @@ test_search()
 
 case $1 in
 clean)      clean_indexes   ;;
-reload)     restart_indexer ;;
+restart)    restart_workers ;;
+reload)     reload_workers  ;;
 ftpsync)    ocds_ftp_sync   ;;
 update)     update_orgs     ;;
+rotate)     rotate_logs     ;;
 test)       test_search     ;;
-*)  echo "Usage: $0 {clean|reload|ftpsync|update|test}"
+*)  echo "Usage: $0 {clean|restart|reload|ftpsync|update|rotate|test}"
 	exit 1
 esac
 
