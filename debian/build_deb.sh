@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ `pwd` != "/srv/search.tenders/debian" ]
+then
+  echo "Buildout must be installed in /srv/search.tenders"
+  exit
+fi
+
 if [ `id -u` -ne 0 ]
 then
   sudo $0
@@ -18,7 +24,8 @@ test -f $DIST.deb && rm $DIST.deb
 
 mkdir $DIST
 cp -r $DIR/* $DIST
-cp -r ../bin ../eggs ../src $DIST/srv/*/
+cp -r ../bin ../eggs ../src $DIST/srv/search.tenders/
+cp -f ../etc/*.{ini,conf} $DIST/etc/search.tenders/
 
 find $DIST/srv -name \*.pyc -name \*.pyo -delete
 

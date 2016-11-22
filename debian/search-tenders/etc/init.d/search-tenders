@@ -48,7 +48,8 @@ daemon_start() {
   if [ -S $SOCKET ] ; then
     >&2 echo "Warning: $SOCKET already exists"
     if [ `ps uax | grep -c circusd` -ne 0 ] ; then
-      return 1
+      >&2 echo "Error: Daemon already started"
+      return
     fi
   fi 
   cd $WORKDIR
@@ -64,8 +65,8 @@ daemon_stop() {
     daemon_control stop $1
     return
   fi
-   if [ ! -s $PIDFILE -a ! -S $SOCKET ] ; then
-    echo "Service not run, nothing to stop"
+  if [ ! -s $PIDFILE -a ! -S $SOCKET ] ; then
+    >&2 echo "Service not run, nothing to stop"
     return
   fi
   echo "Stopping $DAEMON pid "`cat $PIDFILE`
@@ -82,8 +83,11 @@ daemon_restart() {
 }
 
 daemon_reload() {
+  if [ ! -S $SOCKET ] ; then
+    >&2 echo "Service not run, nothing to reload" 
+  fi
   $CONTROL restart
-  sleep 3
+  sleep 5
   if [ ! -s $PIDFILE -a -S $SOCKET ] ; then
     $CONTROL dstats | awk '$2~/python/{print $1}' >$PIDFILE
   fi
