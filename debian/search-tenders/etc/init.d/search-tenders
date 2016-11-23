@@ -79,9 +79,6 @@ daemon_stop() {
 
 daemon_restart() {
   daemon_stop
-  while [ -S $SOCKET ] ; do 
-    sleep 1 
-  done
   sleep 2
   daemon_start
 }
