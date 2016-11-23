@@ -2,18 +2,18 @@
 #
 # search-tenders     Search API for Prozorro portal
 #
-# chkconfig: - 50 50
-# description: Search API for Prozorro portal
-#
 ### BEGIN INIT INFO
 # Provides:          search-tenders
-# Required-Start:    $network $remote_fs $syslog $all
-# Required-Stop:     $network $remote_fs $syslog  
+# Required-Start:    $network $remote_fs $time $syslog
+# Required-Stop:     $network $remote_fs $time $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start daemon at boot time
-# Description:       Enable search api for prozorro.gov.ua
+# Short-Description: Search API
+# Description:       Privides search api for prozorro
 ### END INIT INFO
+#
+# Author:   Volodymyr Flonts <flyonts@gmail.com>
+#
 
 #set -e
 
@@ -54,8 +54,9 @@ daemon_start() {
   log_daemon_msg "Starting openprocurement.search service" "search-tenders"
   start_daemon -p $PIDFILE $DAEMON
   log_end_msg $?
+  sleep 1
   while [ ! -s $PIDFILE -o ! -S $SOCKET ] ; do
-    sleep 0.1
+    sleep 1
   done
   echo "Starting $DAEMON pid" `cat $PIDFILE`
 }
