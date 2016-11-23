@@ -51,9 +51,8 @@ daemon_start() {
       >&2 echo "Error: Daemon already started"
       return
     fi
-  fi 
-  cd $WORKDIR
-  $DAEMON --daemon
+  fi
+  start_daemon -p $PIDFILE $DAEMON
   while [ ! -s $PIDFILE -o ! -S $SOCKET ] ; do
     sleep 0.1
   done
