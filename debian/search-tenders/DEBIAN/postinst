@@ -1,10 +1,10 @@
 #!/bin/sh
 
 if ! id searchtenders ; then
-  adduser --system --home /srv/search.tenders --no-create-home --shell /bin/false --group searchtenders
+  adduser --system --home /opt/search.tenders --no-create-home --shell /bin/false --group searchtenders
 fi
 
-chown searchtenders:searchtenders /srv/search.tenders/var
+chown searchtenders:searchtenders /opt/search.tenders/var
 chown searchtenders:searchtenders /var/log/search.tenders
 
 if [ -x /usr/sbin/update-rc.d ] ; then

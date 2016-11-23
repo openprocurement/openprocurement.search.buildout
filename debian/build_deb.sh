@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ `pwd` != "/srv/search.tenders/debian" ]
+if [ `pwd` != "/opt/search.tenders/debian" ]
 then
-  echo "Buildout must be installed in /srv/search.tenders"
+  echo "Buildout must be installed in /opt/search.tenders"
   exit
 fi
 
@@ -24,10 +24,10 @@ test -f $DIST.deb && rm $DIST.deb
 
 mkdir $DIST
 cp -r $DIR/* $DIST
-cp -r ../bin ../eggs ../src $DIST/srv/search.tenders/
+cp -r ../bin ../eggs ../src $DIST/opt/search.tenders/
 cp -f ../etc/*.{ini,conf} $DIST/etc/search.tenders/
 
-find $DIST/srv -name \*.pyc -name \*.pyo -delete
+find $DIST -name \*.pyc -name \*.pyo -delete
 
 dpkg-deb --build $DIST
 

@@ -1,8 +1,8 @@
 #!/bin/sh
 
 BASEDIR=${buildout:directory}
-CONFDIR=${buildout:directory}/etc
-LOGSDIR=${buildout:directory}/var/log
+CONFDIR=${buildout:etc-directory}
+LOGSDIR=${buildout:log-directory}
 CONTROL=$BASEDIR/bin/circusctl
 
 cd $BASEDIR || exit 1
@@ -11,7 +11,7 @@ clean_indexes()
 {
   for INI in $CONFDIR/search*.ini
   do
-    $BASEDIR/bin/clean_indexes $INI >>$LOGSDIR/clean_indexes.log 2>&1
+    $BASEDIR/bin/clean_indexes $INI >>$LOGSDIR/clean.log 2>&1
   done
 }
 
@@ -62,7 +62,7 @@ update_orgs()
 {
   for INI in $CONFDIR/search*.ini
   do
-    $BASEDIR/bin/update_orgs $INI >>$LOGSDIR/update_orgs.log 2>&1
+    $BASEDIR/bin/update_orgs $INI >>$LOGSDIR/update.log 2>&1
   done
 }
 
@@ -70,8 +70,8 @@ test_search()
 {
   for INI in $CONFDIR/search*.ini
   do
-    $BASEDIR/bin/test_index $INI >>$LOGSDIR/test_search.log 2>&1
-    $BASEDIR/bin/test_search $INI >>$LOGSDIR/test_search.log 2>&1
+    $BASEDIR/bin/test_index $INI >>$LOGSDIR/check.log 2>&1
+    $BASEDIR/bin/test_search $INI >>$LOGSDIR/chcek.log 2>&1
   done
 }
 
