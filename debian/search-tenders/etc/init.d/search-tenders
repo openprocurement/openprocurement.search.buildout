@@ -113,9 +113,9 @@ stop)  daemon_stop $2
   ;;
 stat*) daemon_status
   ;;
-restart) daemon_restart
+restart|reload) daemon_restart
   ;;
-reload|force-reload) daemon_reload 
+force-reload) daemon_reload 
   ;;
 *) echo "Usage: $0 {start|stop|status|reload|force-reload|restart}" 1>&2 
   ;;
