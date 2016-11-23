@@ -8,7 +8,7 @@ fi
 
 if [ `id -u` -ne 0 ]
 then
-  sudo $0
+  echo "Please run as root"
   exit
 fi
 
@@ -29,5 +29,6 @@ cp -f ../etc/*.{ini,conf} $DIST/etc/search.tenders/
 
 find $DIST -name \*.pyc -name \*.pyo -delete
 
+chown -R root:root $DIST
 dpkg-deb --build $DIST
 
