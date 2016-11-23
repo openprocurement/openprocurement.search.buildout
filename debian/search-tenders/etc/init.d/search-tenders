@@ -19,7 +19,6 @@
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
-. /lib/init/vars.sh
 . /lib/lsb/init-functions
 
 PIDFILE="/run/search.tenders.circus.pid"
@@ -52,7 +51,9 @@ daemon_start() {
       return
     fi
   fi
+  log_daemon_msg "Starting openprocurement.search service" "search-tenders"
   start_daemon -p $PIDFILE $DAEMON
+  log_end_msg $?
   while [ ! -s $PIDFILE -o ! -S $SOCKET ] ; do
     sleep 0.1
   done
@@ -69,8 +70,12 @@ daemon_stop() {
     return
   fi
   echo "Stopping $DAEMON pid "`cat $PIDFILE`
+  log_daemon_msg "Stopping openprocurement.search service" "search-tenders"
   $CONTROL quit
-}
+  while [ -s $PIDFILE -a -S $SOCKET ] ; do
+    sleep 1
+  done
+ }
 
 daemon_restart() {
   daemon_stop
