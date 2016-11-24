@@ -28,6 +28,8 @@ test -f $DIST.deb && rm $DIST.deb
 mkdir -p $DIST_DIR
 cp -r $DIR/* $DIST
 cp -r ../bin ../eggs ../src $DIST_DIR
+
+mkdir -p $DIST_ETC
 cp -f ../etc/*.{ini,conf} $DIST_ETC
 
 find $DIST -name \*.pyc -name \*.pyo -delete
