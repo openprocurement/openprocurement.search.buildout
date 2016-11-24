@@ -1,15 +1,22 @@
 #!/bin/sh
 
-if ! id searchtenders ; then
-  adduser --system --home /opt/search.tenders --no-create-home --shell /bin/false --group searchtenders
+USER=searchtenders
+GROUP=searchtenders
+NAME=search-tenders
+HOME=/opt/$NAME
+
+if ! id $USER ; then
+  adduser --system --home $HOME --no-create-home --shell /bin/false --group $GROUP
 fi
 
-chown searchtenders:searchtenders /opt/search.tenders/var
-chown searchtenders:searchtenders /var/log/search.tenders
+for DIR in $HOME/var/log $HOME/var/run /var/log/$NAME ; do
+  mkdir -p $DIR
+  chown -R $USER:$GROUP $DIR
+done
 
 if [ -x /usr/sbin/update-rc.d ] ; then
-  /usr/sbin/update-rc.d search-tenders defaults
-  /usr/sbin/update-rc.d search-tenders enable
+  /usr/sbin/update-rc.d $NAME defaults
+  /usr/sbin/update-rc.d $NAME enable
 fi
 
 if [ -x /bin/systemctl ] ; then

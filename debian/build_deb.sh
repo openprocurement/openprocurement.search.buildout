@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ `pwd` != "/opt/search.tenders/debian" ]
+if [ `pwd` != "/opt/search-tenders/debian" ]
 then
-  echo "Buildout must be installed in /opt/search.tenders"
+  echo "Buildout must be installed in /opt/search-tenders"
   exit
 fi
 
@@ -19,13 +19,16 @@ VER=`awk -F: '$1~/Version/{print $2}' $DIR/DEBIAN/control`
 ARCH=`awk -F: '$1~/Architecture/{print $2}' $DIR/DEBIAN/control`
 DIST=${NAME// /}_${VER/ /}_${ARCH// /}
 
+DIST_DIR=$DIST/opt/search-tenders
+DICT_ETC=$DIST/etc/search-tenders
+
 test -d $DIST && rm -r $DIST
 test -f $DIST.deb && rm $DIST.deb
 
-mkdir $DIST
+mkdir -p $DIST_DIR
 cp -r $DIR/* $DIST
-cp -r ../bin ../eggs ../src $DIST/opt/search.tenders/
-cp -f ../etc/*.{ini,conf} $DIST/etc/search.tenders/
+cp -r ../bin ../eggs ../src $DIST_DIR
+cp -f ../etc/*.{ini,conf} $DIST_ETC
 
 find $DIST -name \*.pyc -name \*.pyo -delete
 

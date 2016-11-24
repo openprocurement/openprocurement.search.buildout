@@ -21,11 +21,11 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 . /lib/lsb/init-functions
 
-PIDFILE="/run/search.tenders.circus.pid"
-DAEMON="/opt/search.tenders/bin/circusd"
-CONTROL="/opt/search.tenders/bin/circusctl"
-SOCKET="/opt/search.tenders/var/circus_endpoint"
-WORKDIR="/opt/search.tenders/var"
+PIDFILE="/run/search-tenders.pid"
+DAEMON="/opt/search-tenders/bin/circusd"
+CONTROL="/opt/search-tenders/bin/circusctl"
+SOCKET="/opt/search-tenders/var/circus_endpoint"
+WORKDIR="/opt/search-tenders/var"
 
 daemon_control() {
   if [ ! -S $SOCKET ] ; then

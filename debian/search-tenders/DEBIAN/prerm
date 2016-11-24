@@ -1,14 +1,13 @@
 #!/bin/sh
 
-[ -x /etc/init.d/search-tenders ] || exit 0
+if [ -x /etc/init.d/search-tenders ] ; then
+  /etc/init.d/search-tenders stop
+fi
 
-/etc/init.d/search-tenders stop
+if [ -x /usr/sbin/update-rc.d ] ; then
+  /usr/sbin/update-rc.d -f search-tenders remove
+fi
 
-[ -x /usr/sbin/update-rc.d ] || exit 0
-
-/usr/sbin/update-rc.d -f search-tenders remove
-
-[ -d /opt/search.tenders ] || exit 0
-
-find /opt/search.tenders -name \*.pyc -delete
-#rm -f /opt/search.tenders/var/*
+if [ -d /opt/search-tenders ] ; then
+  find /opt/search-tenders -name \*.pyc -name \*.pyo -delete
+fi
