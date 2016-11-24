@@ -9,7 +9,7 @@ if ! id $USER ; then
   adduser --system --home $HOME --no-create-home --shell /bin/false --group $GROUP
 fi
 
-for DIR in $HOME/var/log $HOME/var/run /var/log/$NAME ; do
+for DIR in $HOME/var $HOME/var/log $HOME/var/run /var/log/$NAME ; do
   mkdir -p $DIR
   chown -R $USER:$GROUP $DIR
 done
