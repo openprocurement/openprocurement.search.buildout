@@ -20,7 +20,7 @@ ARCH=`awk -F: '$1~/Architecture/{print $2}' $DIR/DEBIAN/control`
 DIST=${NAME// /}_${VER/ /}_${ARCH// /}
 
 DIST_DIR=$DIST/opt/search-tenders
-DICT_ETC=$DIST/etc/search-tenders
+DIST_ETC=$DIST/etc/search-tenders
 
 test -d $DIST && rm -r $DIST
 test -f $DIST.deb && rm $DIST.deb
