@@ -31,6 +31,16 @@ restart_workers()
   do_restart_indexer >>$LOGSDIR/restart.log 2>&1
 }
 
+check_and_restart()
+{
+  TODAY=`date +%Y-%m-%d`
+  COUNT=`cat $LOGSDIR/index*.log | grep -c $TODAY`
+  echo "["`date`"] Check log for $TODAY found $COUNT" >>$LOGSDIR/restart.log
+  if [ $COUNT -eq 0 ] ; then
+    restart_workers
+  fi
+}
+
 do_reload_workers()
 {
   echo "["`date`"] Reload search-tenders"
@@ -80,11 +90,12 @@ case $1 in
 clean)      clean_indexes   ;;
 restart)    restart_workers ;;
 reload)     reload_workers  ;;
+logcheck)   check_and_restart ;;
 ftpsync)    ocds_ftp_sync   ;;
 update)     update_orgs     ;;
 rotate)     rotate_logs     ;;
 test)       test_search     ;;
-*)  echo "Usage: $0 {clean|restart|reload|ftpsync|update|rotate|test}"
+*)  echo "Usage: $0 {clean|restart|reload|logcheck|ftpsync|update|rotate|test}"
 	exit 1
 esac
 
