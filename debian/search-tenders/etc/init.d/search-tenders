@@ -1,18 +1,20 @@
 #!/bin/sh
 #
-# search-tenders     Search API for Prozorro portal
+# search-tenders
+# chkconfig: 2345 80 10
+# pidfile: /run/search-tenders.pid
 #
 ### BEGIN INIT INFO
-# Provides:          search-tenders
-# Required-Start:    $network $remote_fs $time $syslog
-# Required-Stop:     $network $remote_fs $time $syslog
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Search API
-# Description:       Privides search api for prozorro
+# Provides:           search-tenders
+# Required-Start:     $network $remote_fs $time $syslog
+# Required-Stop:      $network $remote_fs $time $syslog
+# Default-Start:      2 3 4 5
+# Default-Stop:       0 1 6
+# Short-Description:  Tenders Indexer and Search API
+# Description:        Privides search api for prozorro
 ### END INIT INFO
 #
-# Author:   Volodymyr Flonts <flyonts@gmail.com>
+# Author: Volodymyr Flonts <flyonts@gmail.com>
 #
 
 #set -e
@@ -32,13 +34,15 @@ daemon_control() {
     >&2 echo "Start daemon first"
     return
   fi
+  echo -n $1 $2 "... "
   case "$2" in
   search*) $CONTROL $1 search_server ;;
   index*) $CONTROL $1 index_worker ;;
-  *) echo "Unknown worker $2" ;;
+  *) echo "error: unknown worker $2" ;;
   esac
+  echo
 }
- 
+
 daemon_start() {
   if [ -n "$1" ] ; then
     daemon_control start $1
@@ -86,7 +90,7 @@ daemon_restart() {
 
 daemon_reload() {
   if [ ! -S $SOCKET ] ; then
-    >&2 echo "Service not run, nothing to reload" 
+    >&2 echo "Service not run, nothing to reload"
   fi
   $CONTROL restart
   sleep 5
@@ -110,17 +114,17 @@ daemon_status() {
 
 
 case "$1" in
-start) daemon_start $2 
+start*) daemon_start $2
   ;;
-stop)  daemon_stop $2
+stop*) daemon_stop $2
   ;;
 stat*) daemon_status
   ;;
 restart|reload) daemon_restart
   ;;
-force-reload) daemon_reload 
+force-reload) daemon_reload
   ;;
-*) echo "Usage: $0 {start|stop|status|reload|force-reload|restart}" 1>&2 
+*) echo "Usage: $0 {start|stop|status|reload|force-reload|restart}" 1>&2
   ;;
 esac
 

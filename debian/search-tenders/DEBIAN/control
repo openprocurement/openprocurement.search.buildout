@@ -4,5 +4,5 @@ Section: base
 Priority: optional
 Architecture: amd64
 Depends: python (>= 2.7), python-gevent (>= 1.0), python-zmq (>= 14.0)
+Description: OpenProcurement Tenders Indexer and Search API
 Maintainer: Volodymyr Flonts <flyonts@gmail.com>
-Description: OpenProcurement Tenders Search API
