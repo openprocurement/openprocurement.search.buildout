@@ -34,7 +34,7 @@ restart_workers()
 check_and_restart()
 {
   TODAY=`date +%Y-%m-%d`
-  COUNT=`cat $LOGSDIR/index*.log | grep -c $TODAY`
+  COUNT=`tail $LOGSDIR/index*.log | grep -c $TODAY`
   echo "["`date`"] Check log for $TODAY found $COUNT" >>$LOGSDIR/restart.log
   if [ $COUNT -eq 0 ] ; then
     restart_workers
@@ -81,7 +81,7 @@ test_search()
   for INI in $CONFDIR/search*.ini
   do
     $BASEDIR/bin/test_index $INI >>$LOGSDIR/test.log 2>&1
-    $BASEDIR/bin/test_search $INI >>$LOGSDIR/test.log 2>&1
+    $BASEDIR/bin/test_search $INI -i >>$LOGSDIR/test.log 2>&1
   done
 }
 
