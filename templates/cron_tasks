@@ -28,7 +28,7 @@ do_restart_workers()
 
 restart_workers()
 {
-  do_restart_indexer >>$LOGSDIR/restart.log 2>&1
+  do_restart_workers >>$LOGSDIR/restart.log 2>&1
 }
 
 check_and_restart()
