@@ -20,14 +20,15 @@
 #set -e
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-
-. /lib/lsb/init-functions
-
 PIDFILE="/run/search-tenders.pid"
 DAEMON="/opt/search-tenders/bin/circusd"
 CONTROL="/opt/search-tenders/bin/circusctl"
 SOCKET="/opt/search-tenders/var/circus_endpoint"
 WORKDIR="/opt/search-tenders/var"
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
 
 daemon_control() {
   if [ ! -S $SOCKET ] ; then
@@ -52,7 +53,7 @@ daemon_start() {
     >&2 echo "Warning: $SOCKET already exists"
     if [ `ps uax | grep -c circusd` -ne 0 ] ; then
       >&2 echo "Error: Daemon already started"
-      return
+      #return
     fi
   fi
   log_daemon_msg "Starting openprocurement.search service" "search-tenders"
