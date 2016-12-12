@@ -25,6 +25,7 @@ edrpou/
 .installed.cfg
 *.egg
 *.deb
+debian/*amd64/
 bin/*
 src/*
 
