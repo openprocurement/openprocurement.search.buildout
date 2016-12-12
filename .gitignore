@@ -24,6 +24,7 @@ edrpou/
 *.egg-info/
 .installed.cfg
 *.egg
+*.deb
 bin/*
 src/*
 
