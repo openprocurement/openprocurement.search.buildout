@@ -78,8 +78,14 @@ daemon_stop() {
   echo "Stopping $DAEMON pid "`cat $PIDFILE`
   log_daemon_msg "Stopping openprocurement.search service" "search-tenders"
   $CONTROL quit
-  while [ -s $PIDFILE -a -S $SOCKET ] ; do
-    sleep 1
+  log_end_msg $?
+  # wait until stop
+  for i in `seq 10` ; do
+    if [ -s $PIDFILE -a -S $SOCKET ] ; then
+      sleep 1
+    else
+      break
+    fi
   done
  }
 
@@ -121,7 +127,9 @@ stop*) daemon_stop $2
   ;;
 stat*) daemon_status
   ;;
-restart|reload) daemon_restart
+restart*) daemon_restart
+  ;;
+reload*) daemon_reload
   ;;
 force-reload) daemon_reload
   ;;
