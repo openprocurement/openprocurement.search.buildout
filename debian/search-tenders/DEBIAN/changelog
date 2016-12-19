@@ -1,3 +1,31 @@
+search-tenders (0.6) stable; urgency=low
+
+ * First stable release for ubuntu 16.04
+ * Add logrotate.conf and rotate option in cron_tasks
+ * Fix systemd reload bug where rotating logs
+ * Add fast_client options to search.ini
+ * Add two-way indexing (fast_client mode)
+ * Update init srcipt compatible with systemd
+ * Update logcheck task in cron_tasks
+ * Add new buld_deb script inside buildout/debian
+ * Circus will always start as daemon
+ * Add orgsgst static json generation
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Mon Dec 19 17:05:21 EET 2016
+
+search-tenders (0.6alpha1) unstable; urgency=low
+
+ * Run reindex in async subprocess (async_reindex option)
+ * Add tender_reindex and reindex_check options
+ * Move index settings to python package
+ * Update index model settings for orgs, tenders, plans
+ * Always create heartbeat even in slave mode
+ * Change default number_of_shards
+ * ftpsync download into tmp file
+ * Add test_search and test_index utilites
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Sat Nov 12 17:14:43 EET 2016
+
 search-tenders (0.5-3) stable; urgency=low
 
  * Force "and" operator for query match _all
