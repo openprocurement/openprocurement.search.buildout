@@ -92,8 +92,8 @@ restart)    restart_workers ;;
 reload)     reload_workers  ;;
 logcheck)   check_and_restart ;;
 ftpsync)    ocds_ftp_sync   ;;
-update)     update_orgs     ;;
-rotate)     rotate_logs     ;;
+update*)    update_orgs     ;;
+rotate*)    rotate_logs     ;;
 test)       test_search     ;;
 *)  echo "Usage: $0 {clean|restart|reload|logcheck|ftpsync|update|rotate|test}"
 	exit 1
