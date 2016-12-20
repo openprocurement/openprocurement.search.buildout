@@ -1,6 +1,8 @@
 search-tenders (0.6.1) stable; urgency=low
 
  * Add configurable user-agent to all clients
+ * Change default search sorting to date desc
+ * Add indexing filters to fill "date" field if missed
 
  -- Volodymyr Flonts <flyonts@gmail.com>  Tue Dec 20 10:50:40 EET 2016
 
