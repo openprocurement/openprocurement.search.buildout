@@ -1,3 +1,9 @@
+search-tenders (0.6.1) stable; urgency=low
+
+ * Add configurable user-agent to all clients
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Tue Dec 20 10:50:40 EET 2016
+
 search-tenders (0.6) stable; urgency=low
 
  * First stable release for ubuntu 16.04
