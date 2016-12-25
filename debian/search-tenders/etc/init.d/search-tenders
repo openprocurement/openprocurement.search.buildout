@@ -101,6 +101,7 @@ daemon_reload() {
   fi
   $CONTROL restart
   sleep 5
+  # restore pidfile if missed
   if [ ! -s $PIDFILE -a -S $SOCKET ] ; then
     $CONTROL dstats | awk '$2~/python/{print $1}' >$PIDFILE
   fi
