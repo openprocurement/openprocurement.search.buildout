@@ -25,6 +25,7 @@ DAEMON="/opt/search-tenders/bin/circusd"
 CONTROL="/opt/search-tenders/bin/circusctl"
 SOCKET="/opt/search-tenders/var/circus_endpoint"
 WORKDIR="/opt/search-tenders/var"
+LOGUSER=searchtenders:searchtenders
 
 test -x $DAEMON || exit 0
 
@@ -60,9 +61,18 @@ daemon_start() {
   start_daemon -p $PIDFILE $DAEMON
   log_end_msg $?
   sleep 1
-  while [ ! -s $PIDFILE -o ! -S $SOCKET ] ; do
-    sleep 1
+  # wait until stop
+  for i in `seq 30` ; do
+    if [ ! -s $PIDFILE -o ! -S $SOCKET ] ; then
+      sleep 1
+    else
+      break
+    fi
   done
+  if [ -n "$LOGUSER" ] ; then
+    chown -R $LOGUSER /var/log/search-tenders
+    chown $LOGUSER $PIDFILE
+  fi
   echo "Starting $DAEMON pid" `cat $PIDFILE`
 }
 
