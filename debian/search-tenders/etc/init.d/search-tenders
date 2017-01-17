@@ -25,7 +25,8 @@ DAEMON="/opt/search-tenders/bin/circusd"
 CONTROL="/opt/search-tenders/bin/circusctl"
 SOCKET="/opt/search-tenders/var/circus_endpoint"
 WORKDIR="/opt/search-tenders/var"
-LOGUSER=searchtenders:searchtenders
+LOGUSER="searchtenders:searchtenders"
+LOGPATH="/var/log/search-tenders"
 
 test -x $DAEMON || exit 0
 
@@ -70,7 +71,7 @@ daemon_start() {
     fi
   done
   if [ -n "$LOGUSER" ] ; then
-    chown -R $LOGUSER /var/log/search-tenders
+    chown $LOGUSER $LOGPATH/*.log
     chown $LOGUSER $PIDFILE
   fi
   echo "Starting $DAEMON pid" `cat $PIDFILE`
