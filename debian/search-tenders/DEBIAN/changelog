@@ -1,3 +1,14 @@
+search-tenders (0.6.2) stable; urgency=low
+
+ * Fix bug in search plans order by date
+ * Add new sorting by dateModified and value.amount desc
+ * Split search.log to access.log and error.log
+ * Verbose logging elasticsearch errors to search error.log
+ * Load official names from EDRPOU registry when indexing
+ * Add test_load utility with test_data (separate repository)
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Tue Jan 17 17:02:57 EET 2017
+
 search-tenders (0.6.1) stable; urgency=low
 
  * Add configurable user-agent to all clients
@@ -21,7 +32,7 @@ search-tenders (0.6) stable; urgency=low
 
  -- Volodymyr Flonts <flyonts@gmail.com>  Mon Dec 19 17:05:21 EET 2016
 
-search-tenders (0.6alpha1) unstable; urgency=low
+search-tenders (0.6-beta1) unstable; urgency=low
 
  * Run reindex in async subprocess (async_reindex option)
  * Add tender_reindex and reindex_check options
