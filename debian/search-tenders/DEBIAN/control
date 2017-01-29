@@ -1,5 +1,5 @@
 Package: search-tenders
-Version: 0.6.2beta6~ubuntu16
+Version: 0.6.2beta7~ubuntu16
 Section: base
 Priority: optional
 Architecture: amd64
