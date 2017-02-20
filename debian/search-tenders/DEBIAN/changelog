@@ -1,3 +1,17 @@
+search-tenders (0.7) stable; urgency=low
+
+ * Add multiple edrpou search for orgs
+ * Add sorting by tender.value and plan.budget
+ * Allow update_orgs start on slave 
+ * Change default tokenizer to standart
+ * Force read-only mode for orgs.sqlite3
+ * Add test_load utility
+ * Fix paper ocds mapping schema value.amout
+ * Fix reindex bug in orgs suggestion index
+ * Fix search by postalCode (add padding 999)
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Mon Feb 20 19:44:51 EET 2017
+
 search-tenders (0.6.2) stable; urgency=low
 
  * Fix bug in search plans order by date
