@@ -1,3 +1,41 @@
+search-tenders (0.8.0b2) unstable; urgency=low
+
+ * Update test utilites for auction2
+ * Add error handling for search_server
+ * Add cav and cav_like search operators
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Fri Aug 18 23:52:24 EEST 2017
+
+search-tenders (0.8.0b1) unstable; urgency=low
+
+ * Cache feature
+ * Set alias for current index
+ * Add index_lang settings and ukrainian analyzer
+ * Add auction2 source
+ * Add index parameter for auctions search api
+ * Add cpvs and cpvs_like operators for auctions
+ * Add item_region and item_square operators for auctions
+ * Most index settings moved to common.json
+ * Async reindex by default
+ * Change default preload to 5000
+ * Fix don't start reindex process when exiting
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Mon Aug 7 02:59:30 EEST 2017
+
+search-tenders (0.7) stable; urgency=low
+
+ * Add multiple edrpou search for orgs
+ * Add sorting by tender.value and plan.budget
+ * Allow update_orgs start on slave 
+ * Change default tokenizer to standart
+ * Force read-only mode for orgs.sqlite3
+ * Add test_load utility
+ * Fix paper ocds mapping schema value.amout
+ * Fix reindex bug in orgs suggestion index
+ * Fix search by postalCode (add padding 999)
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Mon Feb 20 19:44:51 EET 2017
+
 search-tenders (0.6.2) stable; urgency=low
 
  * Fix bug in search plans order by date
