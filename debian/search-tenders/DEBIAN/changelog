@@ -1,8 +1,10 @@
-search-tenders (0.8.0b3) unstable; urgency=low
+search-tenders (0.8.0b4) unstable; urgency=low
 
- * Fix dependencies for setuptools and pkg_resources
+ * Add bulk insert
+ * Add cache_minage
+ * Fix dependencies for setuptools and pkg_resources (beta 3)
 
- -- Volodymyr Flonts <flyonts@gmail.com>  Fri Aug 18 23:52:24 EEST 2017
+ -- Volodymyr Flonts <flyonts@gmail.com>  Sun Aug 20 18:00:09 EEST 2017
 
 search-tenders (0.8.0b2) unstable; urgency=low
 
