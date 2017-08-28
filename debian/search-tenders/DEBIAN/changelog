@@ -1,10 +1,11 @@
-search-tenders (0.8.0beta5) unstable; urgency=low
+search-tenders (0.8.0beta6) unstable; urgency=low
 
  * Add bulk insert
  * Add cache_minage
+ * Add source usage statistics
  * Fix bug in index_source infinity loop
  * Fix dependencies for setuptools and pkg_resources (beta 3)
- * Merge changelog from beta 3 to beta 5
+ * Merge changelog from beta 3 to beta 6
 
  -- Volodymyr Flonts <flyonts@gmail.com>  Mon Aug 28 04:53:39 EEST 2017
 
