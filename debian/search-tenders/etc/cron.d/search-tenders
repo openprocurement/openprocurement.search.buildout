@@ -1,7 +1,6 @@
 # m     h       dom mon dow     user    command
 36      6       *   *   1       root    /opt/search-tenders/bin/cron_tasks rotate
 #36     6       *   *   2-5     root    /opt/search-tenders/bin/cron_tasks logcheck
-#11     14      *   *   *       root    /opt/search-tenders/bin/cron_tasks ftpsync
-21      21      *   *   2       root    /opt/search-tenders/bin/cron_tasks update_orgs
+21      21      *   *   2       root    /opt/search-tenders/bin/cron_tasks update
 31      22      *   *   4       root    /opt/search-tenders/bin/cron_tasks clean
 51      *       *   *   *       root    /opt/search-tenders/bin/cron_tasks test

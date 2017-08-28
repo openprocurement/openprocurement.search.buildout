@@ -63,11 +63,6 @@ rotate_logs()
   fi
 }
 
-ocds_ftp_sync()
-{
-  $BASEDIR/bin/ocds_ftp_sync $CONFDIR/ftpsync.ini >>$LOGSDIR/ftpsync.log 2>&1
-}
-
 update_orgs()
 {
   for INI in $CONFDIR/search*.ini
@@ -91,7 +86,6 @@ clean)      clean_indexes   ;;
 restart)    restart_workers ;;
 reload)     reload_workers  ;;
 logcheck)   check_and_restart ;;
-ftpsync)    ocds_ftp_sync   ;;
 update*)    update_orgs     ;;
 rotate*)    rotate_logs     ;;
 test)       test_search     ;;
