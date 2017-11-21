@@ -1,3 +1,11 @@
+search-tenders (0.8.0beta8) unstable; urgency=low
+
+ * Limit max count of search filters to 10
+ * Remove assetCustodian.address from _all
+ * Remove lotCustodian.address from _all
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Wed Nov 22 00:38:08 EET 2017
+
 search-tenders (0.8.0beta7) unstable; urgency=low
 
  * Add bulk insert
