@@ -29,6 +29,7 @@ mkdir -p $DIST_DIR
 cp -r $DIR/* $DIST
 cp -r ../bin ../eggs ../src ../stopwords $DIST_DIR
 rm -rf $DIST_DIR/src/openprocurement*/.git*
+rm $DIST_DIR/bin/buildout $DIST_DIR/bin/develop
 
 mkdir -p $DIST_ETC
 cp -f ../etc/*.{ini,conf} $DIST_ETC
