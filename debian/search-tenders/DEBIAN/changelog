@@ -1,13 +1,15 @@
-search-tenders (0.8.0beta10) unstable; urgency=low
+search-tenders (0.8.0.beta11) unstable; urgency=low
 
  * Add auctions.map search
  * Add short param in auctions.map
  * Limit max count of search filters to 10
  * Remove assetCustodian.address from _all
  * Remove lotCustodian.address from _all
- * Merge changelog from beta 8 to beta 10
+ * Add asset and lots idexes to test utilites
+ * Add user/group option for index_workder
+ * Merge changelog from beta 8 to beta 11
 
- -- Volodymyr Flonts <flyonts@gmail.com>  Mon Dec 11 20:22:46 EET 2017
+ -- Volodymyr Flonts <flyonts@gmail.com>  Wed Dec 13 11:06:51 EET 2017
 
 search-tenders (0.8.0beta7) unstable; urgency=low
 
