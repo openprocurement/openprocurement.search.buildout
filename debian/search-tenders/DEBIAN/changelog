@@ -1,4 +1,4 @@
-search-tenders (0.8.0.beta11) unstable; urgency=low
+search-tenders (0.8.0b11) unstable; urgency=low
 
  * Add auctions.map search
  * Add short param in auctions.map
@@ -11,7 +11,7 @@ search-tenders (0.8.0.beta11) unstable; urgency=low
 
  -- Volodymyr Flonts <flyonts@gmail.com>  Wed Dec 13 11:06:51 EET 2017
 
-search-tenders (0.8.0beta7) unstable; urgency=low
+search-tenders (0.8.0b7) unstable; urgency=low
 
  * Add bulk insert
  * Add cache_minage
