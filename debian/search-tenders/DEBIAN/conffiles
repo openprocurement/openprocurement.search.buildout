@@ -1,4 +1,5 @@
 /etc/search-tenders/circus.ini
 /etc/search-tenders/ftpsync.ini
+/etc/search-tenders/gunicorn.conf
 /etc/search-tenders/search.ini
 /etc/search-tenders/logrotate.conf
