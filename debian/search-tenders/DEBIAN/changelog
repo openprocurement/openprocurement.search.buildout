@@ -1,4 +1,4 @@
-search-tenders (0.8.0b11) unstable; urgency=low
+search-tenders (0.8.0b12) unstable; urgency=low
 
  * Add auctions.map search
  * Add short param in auctions.map
@@ -7,7 +7,8 @@ search-tenders (0.8.0b11) unstable; urgency=low
  * Remove lotCustodian.address from _all
  * Add asset and lots idexes to test utilites
  * Add user/group option for index_workder
- * Merge changelog from beta 8 to beta 11
+ * Chanfe items.quantity from long to double
+ * Merge changelog from beta 8 to beta 12
 
  -- Volodymyr Flonts <flyonts@gmail.com>  Wed Dec 13 11:06:51 EET 2017
 
