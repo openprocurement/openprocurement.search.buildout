@@ -75,8 +75,8 @@ test_search()
 {
   for INI in $CONFDIR/search*.ini
   do
-    $BASEDIR/bin/test_index $INI >>$LOGSDIR/test.log 2>&1
-    $BASEDIR/bin/test_search $INI -i >>$LOGSDIR/test.log 2>&1
+    $BASEDIR/bin/test_index $INI >>$LOGSDIR/test_index.log 2>&1
+    $BASEDIR/bin/test_search $INI -i >>$LOGSDIR/test_search.log 2>&1
   done
 }
 
