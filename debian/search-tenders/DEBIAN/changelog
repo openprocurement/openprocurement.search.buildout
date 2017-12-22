@@ -1,3 +1,10 @@
+search-tenders (0.8.0b14) unstable; urgency=low
+
+ * Disable cahe usage by default for test_search, test_index and update_orgs
+ * Change process user/group for test_search, test_index and update_orgs
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Fri Dec 22 03:17:37 EET 2017
+
 search-tenders (0.8.0b12) unstable; urgency=low
 
  * Add auctions.map search
