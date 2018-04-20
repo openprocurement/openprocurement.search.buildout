@@ -11,7 +11,7 @@ clean_indexes()
 {
   for INI in $CONFDIR/search*.ini
   do
-    $BASEDIR/bin/clean_indexes $INI >>$LOGSDIR/clean.log 2>&1
+    $BASEDIR/bin/clean_indexes $INI >>$LOGSDIR/cron_clean.log 2>&1
   done
 }
 
@@ -28,14 +28,14 @@ do_restart_workers()
 
 restart_workers()
 {
-  do_restart_workers >>$LOGSDIR/restart.log 2>&1
+  do_restart_workers >>$LOGSDIR/cron_restart.log 2>&1
 }
 
 check_and_restart()
 {
   TODAY=`date +%Y-%m-%d`
   COUNT=`tail $LOGSDIR/index*.log | grep -c $TODAY`
-  echo "["`date`"] Check log for $TODAY found $COUNT" >>$LOGSDIR/restart.log
+  echo "["`date`"] Check log for $TODAY found $COUNT" >>$LOGSDIR/cron_restart.log
   if [ $COUNT -eq 0 ] ; then
     restart_workers
   fi
@@ -45,7 +45,10 @@ do_reload_workers()
 {
   echo "["`date`"] Reload search-tenders"
   $CONTROL restart
-  sleep 5
+  sleep 10
+  PIDFILE=`awk -F= '$1~/pidfile/{print $2}' $CONFDIR/circus.ini`
+  SOCKET=`awk -F= '$1~/endpoint/{sub(/^.+:\/\//,"",$2);print $2}' $CONFDIR/circus.ini`
+  # circus bug: restore circus pidfile after restart
   if [ ! -s $PIDFILE -a -S $SOCKET ] ; then
     $CONTROL dstats | awk '$2~/python/{print $1}' >$PIDFILE
   fi
@@ -53,13 +56,13 @@ do_reload_workers()
 
 reload_workers()
 {
-  do_reload_workers >>$LOGSDIR/restart.log 2>&1
+  do_reload_workers >>$LOGSDIR/cron_restart.log 2>&1
 }
 
 rotate_logs()
 {
   if [ -x /usr/sbin/logrotate ] ; then
-    /usr/sbin/logrotate $CONFDIR/logrotate.conf >/dev/null
+    /usr/sbin/logrotate -s $BASEDIR/var/logrotate.status $CONFDIR/logrotate.conf >/dev/null
   fi
 }
 
@@ -67,7 +70,7 @@ update_orgs()
 {
   for INI in $CONFDIR/search*.ini
   do
-    $BASEDIR/bin/update_orgs $INI >>$LOGSDIR/update.log 2>&1
+    $BASEDIR/bin/update_orgs $INI >>$LOGSDIR/cron_update.log 2>&1
   done
 }
 
