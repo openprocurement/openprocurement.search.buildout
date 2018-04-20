@@ -46,12 +46,13 @@ do_reload_workers()
   echo "["`date`"] Reload search-tenders"
   $CONTROL restart
   sleep 10
-  PIDFILE=`awk -F= '$1~/pidfile/{print $2}' $CONFDIR/circus.ini`
+  PIDFILE=`awk -F= '$1~/pidfile/{sub(/ /,"",$2);print $2}' $CONFDIR/circus.ini`
   SOCKET=`awk -F= '$1~/endpoint/{sub(/^.+:\/\//,"",$2);print $2}' $CONFDIR/circus.ini`
   # circus bug: restore circus pidfile after restart
   if [ ! -s $PIDFILE -a -S $SOCKET ] ; then
     $CONTROL dstats | awk '$2~/python/{print $1}' >$PIDFILE
   fi
+  echo New pid `cat $PIDFILE`
 }
 
 reload_workers()
