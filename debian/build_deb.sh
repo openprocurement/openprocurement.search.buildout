@@ -27,8 +27,9 @@ test -f $DIST.deb && rm $DIST.deb
 
 mkdir -p $DIST_DIR
 cp -r $DIR/* $DIST
-cp -r ../bin ../eggs ../src ../stopwords $DIST_DIR
-rm -rf $DIST_DIR/src/openprocurement*/.git*
+cp -r ../bin ../eggs ../stopwords $DIST_DIR
+test -d ../src && cp -r ../src $DIST_DIR && \
+    rm -rf $DIST_DIR/src/openprocurement*/.git*
 rm $DIST_DIR/bin/buildout $DIST_DIR/bin/develop
 
 mkdir -p $DIST_ETC
