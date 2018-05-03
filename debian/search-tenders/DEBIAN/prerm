@@ -8,6 +8,11 @@ if [ -x /usr/sbin/update-rc.d ] ; then
   /usr/sbin/update-rc.d -f search-tenders remove
 fi
 
+if [ -d /etc/elasticsearch/stopwords ] ; then
+    rm /etc/elasticsearch/stopwords/ukrainian.txt
+    rmdir /etc/elasticsearch/stopwords
+fi
+
 if [ -d /opt/search-tenders ] ; then
   find /opt/search-tenders -iname \*.py[co] -delete
 fi

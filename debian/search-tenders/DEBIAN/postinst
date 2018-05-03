@@ -14,6 +14,11 @@ for DIR in $HOME/var $HOME/var/log $HOME/var/run /var/log/$NAME ; do
   chown -R $USER:$GROUP $DIR
 done
 
+if [ -d /etc/elasticsearch ] ; then
+  test -e /etc/elasticsearch/stopwords || mkdir /etc/elasticsearch/stopwords
+  cp -n $HOME/share/stopwords/*.txt /etc/elasticsearch/stopwords
+fi
+
 if [ -x /usr/sbin/update-rc.d ] ; then
   /usr/sbin/update-rc.d $NAME defaults
   /usr/sbin/update-rc.d $NAME enable
