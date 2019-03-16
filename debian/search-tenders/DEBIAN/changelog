@@ -1,3 +1,16 @@
+search-tenders (0.8.1) stable; urgency=low
+
+ *  Release of version 0.8.1
+ *  Add pidfile config option for index_worker
+ *  Add reindex_loops feature for index_worker
+ *  Add new search filters: agrid, agrid_like, agr_tender, main_proc_category,
+    milestone_duration, milestone_percentage
+ *  Split search_server range map into str_range_map/float_range_map
+ *  Update tender mappings settings, add agreements and much more
+ *  Create copy of config for each index instance
+
+ -- Volodymyr Flonts <flyonts@gmail.com>  Sat Mar 16 18:20:00 EET 2019
+
 search-tenders (0.8) stable; urgency=low
 
  *  Release of version 0.8
